@@ -1,10 +1,17 @@
 {
+  "extends": "@zeecom/tsconfig/base.json",
   "compilerOptions": {
+    "lib": [
+      "ES2022",
+      "dom",
+      "dom.iterable"
+    ],
+    "jsx": "preserve",
     "strict": true,
     "esModuleInterop": true,
-    "jsx": "react-jsx",
-    "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "Bundler"
+    "paths": {
+      "~/*": ["./src/*"]
+    }
   }
 }
