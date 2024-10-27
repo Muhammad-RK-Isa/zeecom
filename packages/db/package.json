@@ -1,0 +1,44 @@
+{
+  "name": "@zeecom/db",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./src/index.ts"
+    },
+    "./client": {
+      "types": "./dist/client.d.ts",
+      "default": "./src/client.ts"
+    },
+    "./schema": {
+      "types": "./dist/schema/index.d.ts",
+      "default": "./src/schema/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "push": "bunx --bun dotenv -e ../../.env -- drizzle-kit push",
+    "studio": "bunx --bun dotenv -e ../../.env -- drizzle-kit studio",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "devDependencies": {
+    "@zeecom/eslint-config": "*",
+    "@zeecom/prettier-config": "*",
+    "@zeecom/tsconfig": "*",
+    "dotenv-cli": "^7.4.2",
+    "drizzle-kit": "^0.26.2",
+    "eslint": "^9.13.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.35.3",
+    "postgres": "^3.4.5"
+  },
+  "prettier": "@zeecom/prettier-config"
+}
