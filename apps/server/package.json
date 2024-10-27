@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@zeecom/api": "*",
+    "@zeecom/uploader": "*",
     "@hono/trpc-server": "^0.3.2",
     "@t3-oss/env-core": "^0.11.1",
     "@trpc/server": "^11.0.0-rc.593",
