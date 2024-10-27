@@ -11,79 +11,158 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as AboutImport } from './routes/about'
-import { Route as IndexImport } from './routes/index'
+import { Route as RootLayoutImport } from './routes/_root-layout'
+import { Route as AuthLayoutImport } from './routes/_auth-layout'
+import { Route as RootLayoutIndexImport } from './routes/_root-layout/index'
+import { Route as RootLayoutProfileImport } from './routes/_root-layout/profile'
+import { Route as AuthLayoutSignInImport } from './routes/_auth-layout/sign-in'
 
 // Create/Update Routes
 
-const AboutRoute = AboutImport.update({
-  id: '/about',
-  path: '/about',
+const RootLayoutRoute = RootLayoutImport.update({
+  id: '/_root-layout',
   getParentRoute: () => rootRoute,
 } as any)
 
-const IndexRoute = IndexImport.update({
+const AuthLayoutRoute = AuthLayoutImport.update({
+  id: '/_auth-layout',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const RootLayoutIndexRoute = RootLayoutIndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutProfileRoute = RootLayoutProfileImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const AuthLayoutSignInRoute = AuthLayoutSignInImport.update({
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => AuthLayoutRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
+    '/_auth-layout': {
+      id: '/_auth-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthLayoutImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
+    '/_root-layout': {
+      id: '/_root-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof RootLayoutImport
       parentRoute: typeof rootRoute
+    }
+    '/_auth-layout/sign-in': {
+      id: '/_auth-layout/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof AuthLayoutSignInImport
+      parentRoute: typeof AuthLayoutImport
+    }
+    '/_root-layout/profile': {
+      id: '/_root-layout/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof RootLayoutProfileImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/': {
+      id: '/_root-layout/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof RootLayoutIndexImport
+      parentRoute: typeof RootLayoutImport
     }
   }
 }
 
 // Create and export the route tree
 
+interface AuthLayoutRouteChildren {
+  AuthLayoutSignInRoute: typeof AuthLayoutSignInRoute
+}
+
+const AuthLayoutRouteChildren: AuthLayoutRouteChildren = {
+  AuthLayoutSignInRoute: AuthLayoutSignInRoute,
+}
+
+const AuthLayoutRouteWithChildren = AuthLayoutRoute._addFileChildren(
+  AuthLayoutRouteChildren,
+)
+
+interface RootLayoutRouteChildren {
+  RootLayoutProfileRoute: typeof RootLayoutProfileRoute
+  RootLayoutIndexRoute: typeof RootLayoutIndexRoute
+}
+
+const RootLayoutRouteChildren: RootLayoutRouteChildren = {
+  RootLayoutProfileRoute: RootLayoutProfileRoute,
+  RootLayoutIndexRoute: RootLayoutIndexRoute,
+}
+
+const RootLayoutRouteWithChildren = RootLayoutRoute._addFileChildren(
+  RootLayoutRouteChildren,
+)
+
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '': typeof RootLayoutRouteWithChildren
+  '/sign-in': typeof AuthLayoutSignInRoute
+  '/profile': typeof RootLayoutProfileRoute
+  '/': typeof RootLayoutIndexRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '': typeof AuthLayoutRouteWithChildren
+  '/sign-in': typeof AuthLayoutSignInRoute
+  '/profile': typeof RootLayoutProfileRoute
+  '/': typeof RootLayoutIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/_auth-layout': typeof AuthLayoutRouteWithChildren
+  '/_root-layout': typeof RootLayoutRouteWithChildren
+  '/_auth-layout/sign-in': typeof AuthLayoutSignInRoute
+  '/_root-layout/profile': typeof RootLayoutProfileRoute
+  '/_root-layout/': typeof RootLayoutIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '' | '/sign-in' | '/profile' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '' | '/sign-in' | '/profile' | '/'
+  id:
+    | '__root__'
+    | '/_auth-layout'
+    | '/_root-layout'
+    | '/_auth-layout/sign-in'
+    | '/_root-layout/profile'
+    | '/_root-layout/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  AuthLayoutRoute: typeof AuthLayoutRouteWithChildren
+  RootLayoutRoute: typeof RootLayoutRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  AuthLayoutRoute: AuthLayoutRouteWithChildren,
+  RootLayoutRoute: RootLayoutRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -98,15 +177,34 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/about"
+        "/_auth-layout",
+        "/_root-layout"
       ]
     },
-    "/": {
-      "filePath": "index.tsx"
+    "/_auth-layout": {
+      "filePath": "_auth-layout.tsx",
+      "children": [
+        "/_auth-layout/sign-in"
+      ]
     },
-    "/about": {
-      "filePath": "about.tsx"
+    "/_root-layout": {
+      "filePath": "_root-layout.tsx",
+      "children": [
+        "/_root-layout/profile",
+        "/_root-layout/"
+      ]
+    },
+    "/_auth-layout/sign-in": {
+      "filePath": "_auth-layout/sign-in.tsx",
+      "parent": "/_auth-layout"
+    },
+    "/_root-layout/profile": {
+      "filePath": "_root-layout/profile.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/": {
+      "filePath": "_root-layout/index.tsx",
+      "parent": "/_root-layout"
     }
   }
 }
