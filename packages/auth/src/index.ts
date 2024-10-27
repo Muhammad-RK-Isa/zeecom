@@ -1,7 +1,9 @@
-import { Lucia, TimeSpan } from "lucia";
+import type { UserEntity } from "@zeecom/db/schema";
 import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle";
-import { users, sessions, type UserEntity } from "@zeecom/db/schema";
+import { Lucia, TimeSpan } from "lucia";
+
 import { db } from "@zeecom/db/client";
+import { sessions, users } from "@zeecom/db/schema";
 
 const adapter = new DrizzlePostgreSQLAdapter(db, sessions, users);
 
@@ -39,5 +41,5 @@ declare module "lucia" {
   }
 }
 
-interface DatabaseSessionAttributes { }
-interface DatabaseUserAttributes extends Omit<UserEntity, "password"> { }
+interface DatabaseSessionAttributes {}
+interface DatabaseUserAttributes extends Omit<UserEntity, "password"> {}

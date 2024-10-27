@@ -1,10 +1,10 @@
 import { initTRPC, TRPCError } from "@trpc/server";
+import { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 import SuperJSON from "superjson";
 import { ZodError } from "zod";
 
 import { lucia } from "@zeecom/auth";
 import { db } from "@zeecom/db/client";
-import { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 
 export const createAdminContext = async (opts: FetchCreateContextFnOptions) => {
   const { req } = opts;
@@ -77,7 +77,7 @@ export const protectedAdminProcedure = t.procedure.use(({ ctx, next }) => {
     ctx: {
       user: ctx.user,
       session: ctx.session,
-    }
+    },
   });
 });
 
