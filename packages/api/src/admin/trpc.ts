@@ -7,8 +7,10 @@ import { db } from "@zeecom/db/client";
 import { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 
 export const createAdminContext = async (opts: FetchCreateContextFnOptions) => {
-  const cookieHeader = opts.resHeaders.get("Cookie") ?? "";
+  const { req } = opts;
+  const cookieHeader = req.headers.get("Cookie") ?? "";
 
+  // Read the session cookie
   const sessionId = lucia.readSessionCookie(cookieHeader);
 
   let session = null;
@@ -21,6 +23,7 @@ export const createAdminContext = async (opts: FetchCreateContextFnOptions) => {
       session = sessionData.session;
       user = sessionData.user;
 
+      // Refresh session if needed and update the cookie
       if (session && session.fresh) {
         opts.resHeaders.append(
           "Set-Cookie",
@@ -28,6 +31,7 @@ export const createAdminContext = async (opts: FetchCreateContextFnOptions) => {
         );
       }
     } catch (error) {
+      // If session is invalid, clear the session cookie
       opts.resHeaders.append(
         "Set-Cookie",
         lucia.createBlankSessionCookie().serialize(),
