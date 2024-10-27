@@ -1,12 +1,13 @@
+import "~/styles/globals.css";
+
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider, createRouter } from '@tanstack/react-router'
-import { routeTree } from './routeTree.gen'
+import { RouterProvider } from '@tanstack/react-router'
+import { createRouter } from './router'
 
-const router = createRouter({
-  routeTree,
-  defaultPreload: 'intent',
-})
+import { ThemeProvider } from "./components/theme-provider";
+
+const router = createRouter()
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -15,9 +16,15 @@ declare module '@tanstack/react-router' {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const rootElement = document.getElementById('__zecom')!
+const rootElement = document.getElementById('__zeecom')!
 
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
-  root.render(<RouterProvider router={router} />)
+  root.render(
+    <React.StrictMode>
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </React.StrictMode>,
+  );
 }
