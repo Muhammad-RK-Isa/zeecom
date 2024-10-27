@@ -41,7 +41,6 @@ export async function signIn(ctx: AdminContext, input: SignInInput) {
   });
   const sessionCookie = lucia.createSessionCookie(session.id).serialize();
 
-  ctx.headers.append("Set-Cookie", sessionCookie);
-
+  ctx.resHeaders.append("Set-Cookie", sessionCookie);
   return { success: true };
 }

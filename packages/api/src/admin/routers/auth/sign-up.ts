@@ -40,7 +40,7 @@ export async function signUp(ctx: AdminContext, input: SignUpInput) {
 
     const sessionCookie = lucia.createSessionCookie(session.id).serialize();
 
-    ctx.headers.append("Set-Cookie", sessionCookie);
+    ctx.resHeaders.append("Set-Cookie", sessionCookie);
 
     return { success: true };
   } catch (error) {
