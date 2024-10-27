@@ -1,0 +1,31 @@
+{
+  "name": "@zeecom/uploader",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@zeecom/auth": "*",
+    "@zeecom/db": "*",
+    "uploadthing": "^7.2.0"
+  },
+  "devDependencies": {
+    "@zeecom/eslint-config": "*",
+    "@zeecom/prettier-config": "*",
+    "@zeecom/tsconfig": "*",
+    "eslint": "^9.13.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
+  },
+  "prettier": "@zeecom/prettier-config"
+}
