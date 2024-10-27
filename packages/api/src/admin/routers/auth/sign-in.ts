@@ -1,7 +1,7 @@
-import type { SignInInput } from "@zeecom/validators/admin";
 import { TRPCError } from "@trpc/server";
 import { Scrypt } from "lucia";
 
+import type { SignInInput } from "@zeecom/validators/admin";
 import { lucia } from "@zeecom/auth";
 
 import type { AdminContext } from "../../trpc";

@@ -6,10 +6,10 @@ export async function getUser(cookieHeader: string) {
   if (sessionId) {
     const { session, user } = await lucia.validateSession(sessionId);
 
-    return { session, user }
+    return { session, user };
   }
   return {
     session: null,
     user: null,
-  }
+  };
 }

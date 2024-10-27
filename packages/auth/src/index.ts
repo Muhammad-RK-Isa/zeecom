@@ -1,7 +1,7 @@
-import type { UserEntity } from "@zeecom/db/schema";
 import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle";
 import { Lucia, TimeSpan } from "lucia";
 
+import type { UserEntity } from "@zeecom/db/schema";
 import { db } from "@zeecom/db/client";
 import { sessions, users } from "@zeecom/db/schema";
 

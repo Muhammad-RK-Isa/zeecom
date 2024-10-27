@@ -1,8 +1,8 @@
-import type { SignUpInput } from "@zeecom/validators/admin";
 import { TRPCError } from "@trpc/server";
 import { Scrypt } from "oslo/password";
 import postgres from "postgres";
 
+import type { SignUpInput } from "@zeecom/validators/admin";
 import { lucia } from "@zeecom/auth";
 import { users } from "@zeecom/db/schema";
 
