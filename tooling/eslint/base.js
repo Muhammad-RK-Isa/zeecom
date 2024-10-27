@@ -6,13 +6,6 @@ import eslint from "@eslint/js";
 import importPlugin from "eslint-plugin-import";
 import turboPlugin from "eslint-plugin-turbo";
 import tseslint from "typescript-eslint";
-import { readFileSync } from "node:fs";
-
-const gitignorePath = path.join( import.meta.dirname, "../../.gitignore" );
-const gitignorePatterns = readFileSync( gitignorePath, "utf8" )
-  .split( "\n" )
-  .filter( line => line && !line.startsWith( "#" ) );
-
 /**
  * All packages that leverage t3-env should use this rule
  */
@@ -44,7 +37,8 @@ export const restrictEnvAccess = tseslint.config(
 );
 
 export default tseslint.config(
-  { ignores: [ "**/*.config.*", ...gitignorePatterns, ] },
+  includeIgnoreFile( path.join( import.meta.dirname, "../../.gitignore" ) ),
+  { ignores: [ "**/*.config.*" ] },
   {
     files: [ "**/*.js", "**/*.ts", "**/*.tsx" ],
     plugins: {
@@ -79,6 +73,9 @@ export default tseslint.config(
       ],
       "@typescript-eslint/no-non-null-assertion": "error",
       "import/consistent-type-specifier-style": [ "error", "prefer-top-level" ],
+      "@typescript-eslint/consistent-type-definitions": "off",
+      "@typescript-eslint/only-throw-error": "off",
+      "@typescript-eslint/no-empty-object-type": "off",
     },
   },
   {
