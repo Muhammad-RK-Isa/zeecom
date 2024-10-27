@@ -3,7 +3,7 @@ import { SidebarTrigger } from '~/components/ui/sidebar'
 
 export default function RootHeader() {
   return (
-    <header className='border-b w-full sticky z-50 top-0'>
+    <header className='border-b w-full sticky z-50 top-0 bg-sidebar'>
       <nav className='p-4'>
         <SidebarTrigger />
       </nav>
