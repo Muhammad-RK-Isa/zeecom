@@ -22,9 +22,10 @@
     "dev": "tsc",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
-    "push": "bunx --bun dotenv -e ../../.env -- drizzle-kit push",
-    "studio": "bunx --bun dotenv -e ../../.env -- drizzle-kit studio",
-    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+    "push": "bun with-env drizzle-kit push",
+    "studio": "bun with-env drizzle-kit studio",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false",
+    "with-env": "dotenv -e ../../.env --"
   },
   "devDependencies": {
     "@zeecom/eslint-config": "*",
