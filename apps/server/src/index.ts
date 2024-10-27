@@ -7,14 +7,8 @@ const app = new Hono()
 
 app.use(cors())
 
-app.get('/', (c) => {
-  return c.text('Hello 🔥 Hono!')
-})
-
-app.basePath("/api")
-
 app.use(
-  "/admin/trpc/*",
+  "/api/admin/trpc/*",
   trpcServer({
     router: adminRouter,
     createContext: createAdminContext,
@@ -25,6 +19,7 @@ app.use(
 Bun.serve({
   fetch: app.fetch,
   port: 8000,
+  hostname: "0.0.0.0",
 })
 
 console.log('⚡️ Hono server is running at http://localhost:8000')
