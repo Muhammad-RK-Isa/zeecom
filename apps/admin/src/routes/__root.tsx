@@ -1,36 +1,47 @@
-import * as React from 'react'
-import { Link, Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import {
+  Outlet,
+  createRootRouteWithContext,
+  useRouterState,
+} from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useMediaQuery } from "usehooks-ts";
 
-export const Route = createRootRoute({
+import type { trpcQueryUtils } from "../router";
+import { Toaster } from "~/components/ui/sonner";
+import { TooltipProvider } from "~/components/ui/tooltip";
+import { useTheme } from "~/components/theme-provider";
+
+export interface RouterAppContext {
+  trpcQueryUtils: typeof trpcQueryUtils;
+}
+
+export const Route = createRootRouteWithContext<RouterAppContext>()({
   component: RootComponent,
-})
+});
 
 function RootComponent() {
+  const isFetching = useRouterState({ select: (s) => s.isLoading })
+
+  const isDesktop = useMediaQuery("(min-width: 1024px)")
+
+  const { theme } = useTheme()
+
   return (
-    <>
-      <div className="p-2 flex gap-2 text-lg">
-        <Link
-          to="/"
-          activeProps={{
-            className: 'font-bold',
-          }}
-          activeOptions={{ exact: true }}
-        >
-          Home
-        </Link>{' '}
-        <Link
-          to="/about"
-          activeProps={{
-            className: 'font-bold',
-          }}
-        >
-          About
-        </Link>
-      </div>
-      <hr />
+    <TooltipProvider>
+      {isFetching ? (
+        <div className='w-full text-center'>
+          Root loading...
+        </div>
+      ) : null}
       <Outlet />
+      <Toaster
+        theme={theme}
+        richColors
+        expand={isDesktop}
+      />
+      <ReactQueryDevtools position='right' buttonPosition='top-right' />
       <TanStackRouterDevtools position="bottom-right" />
-    </>
+    </TooltipProvider>
   )
 }
