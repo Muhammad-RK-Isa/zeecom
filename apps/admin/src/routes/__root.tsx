@@ -28,20 +28,22 @@ function RootComponent() {
   const { theme } = useTheme()
 
   return (
-    <TooltipProvider>
-      {isFetching ? (
-        <div className='w-full text-center'>
-          Root loading...
-        </div>
-      ) : null}
-      <Outlet />
-      <Toaster
-        theme={theme}
-        richColors
-        expand={isDesktop}
-      />
-      <ReactQueryDevtools position='right' buttonPosition='top-right' />
-      <TanStackRouterDevtools position="bottom-right" />
-    </TooltipProvider>
+    <main className="antialiased scroll-smooth">
+      <TooltipProvider>
+        {isFetching ? (
+          <div className='w-full text-center'>
+            Root loading...
+          </div>
+        ) : null}
+        <Outlet />
+        <Toaster
+          theme={theme}
+          richColors
+          expand={isDesktop}
+        />
+        <ReactQueryDevtools position='right' buttonPosition='top-right' />
+        <TanStackRouterDevtools position="bottom-right" />
+      </TooltipProvider>
+    </main>
   )
 }
