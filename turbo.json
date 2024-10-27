@@ -56,7 +56,8 @@
     }
   },
   "globalEnv": [
-    "DATABASE_URL"
+    "DATABASE_URL",
+    "UPLOADTHING_TOKEN"
   ],
   "globalPassThroughEnv": [
     "NODE_ENV",
