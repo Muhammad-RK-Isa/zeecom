@@ -15,7 +15,22 @@ import { Route as RootLayoutImport } from './routes/_root-layout'
 import { Route as AuthLayoutImport } from './routes/_auth-layout'
 import { Route as RootLayoutIndexImport } from './routes/_root-layout/index'
 import { Route as RootLayoutProfileImport } from './routes/_root-layout/profile'
+import { Route as RootLayoutCollectionsImport } from './routes/_root-layout/collections'
+import { Route as RootLayoutCategoriesImport } from './routes/_root-layout/categories'
 import { Route as AuthLayoutSignInImport } from './routes/_auth-layout/sign-in'
+import { Route as RootLayoutSettingsIndexImport } from './routes/_root-layout/settings/index'
+import { Route as RootLayoutProductsIndexImport } from './routes/_root-layout/products/index'
+import { Route as RootLayoutOrdersIndexImport } from './routes/_root-layout/orders/index'
+import { Route as RootLayoutInventoryIndexImport } from './routes/_root-layout/inventory/index'
+import { Route as RootLayoutCustomersIndexImport } from './routes/_root-layout/customers/index'
+import { Route as RootLayoutSettingsUsersImport } from './routes/_root-layout/settings/users'
+import { Route as RootLayoutSettingsStoreImport } from './routes/_root-layout/settings/store'
+import { Route as RootLayoutSettingsProfileImport } from './routes/_root-layout/settings/profile'
+import { Route as RootLayoutProductsCreateImport } from './routes/_root-layout/products/create'
+import { Route as RootLayoutProductsIdImport } from './routes/_root-layout/products/$id'
+import { Route as RootLayoutOrdersIdImport } from './routes/_root-layout/orders/$id'
+import { Route as RootLayoutInventoryIdImport } from './routes/_root-layout/inventory/$id'
+import { Route as RootLayoutCustomersIdImport } from './routes/_root-layout/customers/$id'
 
 // Create/Update Routes
 
@@ -41,10 +56,100 @@ const RootLayoutProfileRoute = RootLayoutProfileImport.update({
   getParentRoute: () => RootLayoutRoute,
 } as any)
 
+const RootLayoutCollectionsRoute = RootLayoutCollectionsImport.update({
+  id: '/collections',
+  path: '/collections',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutCategoriesRoute = RootLayoutCategoriesImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
 const AuthLayoutSignInRoute = AuthLayoutSignInImport.update({
   id: '/sign-in',
   path: '/sign-in',
   getParentRoute: () => AuthLayoutRoute,
+} as any)
+
+const RootLayoutSettingsIndexRoute = RootLayoutSettingsIndexImport.update({
+  id: '/settings/',
+  path: '/settings/',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutProductsIndexRoute = RootLayoutProductsIndexImport.update({
+  id: '/products/',
+  path: '/products/',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutOrdersIndexRoute = RootLayoutOrdersIndexImport.update({
+  id: '/orders/',
+  path: '/orders/',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutInventoryIndexRoute = RootLayoutInventoryIndexImport.update({
+  id: '/inventory/',
+  path: '/inventory/',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutCustomersIndexRoute = RootLayoutCustomersIndexImport.update({
+  id: '/customers/',
+  path: '/customers/',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutSettingsUsersRoute = RootLayoutSettingsUsersImport.update({
+  id: '/settings/users',
+  path: '/settings/users',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutSettingsStoreRoute = RootLayoutSettingsStoreImport.update({
+  id: '/settings/store',
+  path: '/settings/store',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutSettingsProfileRoute = RootLayoutSettingsProfileImport.update({
+  id: '/settings/profile',
+  path: '/settings/profile',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutProductsCreateRoute = RootLayoutProductsCreateImport.update({
+  id: '/products/create',
+  path: '/products/create',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutProductsIdRoute = RootLayoutProductsIdImport.update({
+  id: '/products/$id',
+  path: '/products/$id',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutOrdersIdRoute = RootLayoutOrdersIdImport.update({
+  id: '/orders/$id',
+  path: '/orders/$id',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutInventoryIdRoute = RootLayoutInventoryIdImport.update({
+  id: '/inventory/$id',
+  path: '/inventory/$id',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutCustomersIdRoute = RootLayoutCustomersIdImport.update({
+  id: '/customers/$id',
+  path: '/customers/$id',
+  getParentRoute: () => RootLayoutRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -72,6 +177,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLayoutSignInImport
       parentRoute: typeof AuthLayoutImport
     }
+    '/_root-layout/categories': {
+      id: '/_root-layout/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof RootLayoutCategoriesImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/collections': {
+      id: '/_root-layout/collections'
+      path: '/collections'
+      fullPath: '/collections'
+      preLoaderRoute: typeof RootLayoutCollectionsImport
+      parentRoute: typeof RootLayoutImport
+    }
     '/_root-layout/profile': {
       id: '/_root-layout/profile'
       path: '/profile'
@@ -84,6 +203,97 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof RootLayoutIndexImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/customers/$id': {
+      id: '/_root-layout/customers/$id'
+      path: '/customers/$id'
+      fullPath: '/customers/$id'
+      preLoaderRoute: typeof RootLayoutCustomersIdImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/inventory/$id': {
+      id: '/_root-layout/inventory/$id'
+      path: '/inventory/$id'
+      fullPath: '/inventory/$id'
+      preLoaderRoute: typeof RootLayoutInventoryIdImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/orders/$id': {
+      id: '/_root-layout/orders/$id'
+      path: '/orders/$id'
+      fullPath: '/orders/$id'
+      preLoaderRoute: typeof RootLayoutOrdersIdImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/products/$id': {
+      id: '/_root-layout/products/$id'
+      path: '/products/$id'
+      fullPath: '/products/$id'
+      preLoaderRoute: typeof RootLayoutProductsIdImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/products/create': {
+      id: '/_root-layout/products/create'
+      path: '/products/create'
+      fullPath: '/products/create'
+      preLoaderRoute: typeof RootLayoutProductsCreateImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/settings/profile': {
+      id: '/_root-layout/settings/profile'
+      path: '/settings/profile'
+      fullPath: '/settings/profile'
+      preLoaderRoute: typeof RootLayoutSettingsProfileImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/settings/store': {
+      id: '/_root-layout/settings/store'
+      path: '/settings/store'
+      fullPath: '/settings/store'
+      preLoaderRoute: typeof RootLayoutSettingsStoreImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/settings/users': {
+      id: '/_root-layout/settings/users'
+      path: '/settings/users'
+      fullPath: '/settings/users'
+      preLoaderRoute: typeof RootLayoutSettingsUsersImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/customers/': {
+      id: '/_root-layout/customers/'
+      path: '/customers'
+      fullPath: '/customers'
+      preLoaderRoute: typeof RootLayoutCustomersIndexImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/inventory/': {
+      id: '/_root-layout/inventory/'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof RootLayoutInventoryIndexImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/orders/': {
+      id: '/_root-layout/orders/'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof RootLayoutOrdersIndexImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/products/': {
+      id: '/_root-layout/products/'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof RootLayoutProductsIndexImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/settings/': {
+      id: '/_root-layout/settings/'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof RootLayoutSettingsIndexImport
       parentRoute: typeof RootLayoutImport
     }
   }
@@ -104,13 +314,43 @@ const AuthLayoutRouteWithChildren = AuthLayoutRoute._addFileChildren(
 )
 
 interface RootLayoutRouteChildren {
+  RootLayoutCategoriesRoute: typeof RootLayoutCategoriesRoute
+  RootLayoutCollectionsRoute: typeof RootLayoutCollectionsRoute
   RootLayoutProfileRoute: typeof RootLayoutProfileRoute
   RootLayoutIndexRoute: typeof RootLayoutIndexRoute
+  RootLayoutCustomersIdRoute: typeof RootLayoutCustomersIdRoute
+  RootLayoutInventoryIdRoute: typeof RootLayoutInventoryIdRoute
+  RootLayoutOrdersIdRoute: typeof RootLayoutOrdersIdRoute
+  RootLayoutProductsIdRoute: typeof RootLayoutProductsIdRoute
+  RootLayoutProductsCreateRoute: typeof RootLayoutProductsCreateRoute
+  RootLayoutSettingsProfileRoute: typeof RootLayoutSettingsProfileRoute
+  RootLayoutSettingsStoreRoute: typeof RootLayoutSettingsStoreRoute
+  RootLayoutSettingsUsersRoute: typeof RootLayoutSettingsUsersRoute
+  RootLayoutCustomersIndexRoute: typeof RootLayoutCustomersIndexRoute
+  RootLayoutInventoryIndexRoute: typeof RootLayoutInventoryIndexRoute
+  RootLayoutOrdersIndexRoute: typeof RootLayoutOrdersIndexRoute
+  RootLayoutProductsIndexRoute: typeof RootLayoutProductsIndexRoute
+  RootLayoutSettingsIndexRoute: typeof RootLayoutSettingsIndexRoute
 }
 
 const RootLayoutRouteChildren: RootLayoutRouteChildren = {
+  RootLayoutCategoriesRoute: RootLayoutCategoriesRoute,
+  RootLayoutCollectionsRoute: RootLayoutCollectionsRoute,
   RootLayoutProfileRoute: RootLayoutProfileRoute,
   RootLayoutIndexRoute: RootLayoutIndexRoute,
+  RootLayoutCustomersIdRoute: RootLayoutCustomersIdRoute,
+  RootLayoutInventoryIdRoute: RootLayoutInventoryIdRoute,
+  RootLayoutOrdersIdRoute: RootLayoutOrdersIdRoute,
+  RootLayoutProductsIdRoute: RootLayoutProductsIdRoute,
+  RootLayoutProductsCreateRoute: RootLayoutProductsCreateRoute,
+  RootLayoutSettingsProfileRoute: RootLayoutSettingsProfileRoute,
+  RootLayoutSettingsStoreRoute: RootLayoutSettingsStoreRoute,
+  RootLayoutSettingsUsersRoute: RootLayoutSettingsUsersRoute,
+  RootLayoutCustomersIndexRoute: RootLayoutCustomersIndexRoute,
+  RootLayoutInventoryIndexRoute: RootLayoutInventoryIndexRoute,
+  RootLayoutOrdersIndexRoute: RootLayoutOrdersIndexRoute,
+  RootLayoutProductsIndexRoute: RootLayoutProductsIndexRoute,
+  RootLayoutSettingsIndexRoute: RootLayoutSettingsIndexRoute,
 }
 
 const RootLayoutRouteWithChildren = RootLayoutRoute._addFileChildren(
@@ -120,15 +360,45 @@ const RootLayoutRouteWithChildren = RootLayoutRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '': typeof RootLayoutRouteWithChildren
   '/sign-in': typeof AuthLayoutSignInRoute
+  '/categories': typeof RootLayoutCategoriesRoute
+  '/collections': typeof RootLayoutCollectionsRoute
   '/profile': typeof RootLayoutProfileRoute
   '/': typeof RootLayoutIndexRoute
+  '/customers/$id': typeof RootLayoutCustomersIdRoute
+  '/inventory/$id': typeof RootLayoutInventoryIdRoute
+  '/orders/$id': typeof RootLayoutOrdersIdRoute
+  '/products/$id': typeof RootLayoutProductsIdRoute
+  '/products/create': typeof RootLayoutProductsCreateRoute
+  '/settings/profile': typeof RootLayoutSettingsProfileRoute
+  '/settings/store': typeof RootLayoutSettingsStoreRoute
+  '/settings/users': typeof RootLayoutSettingsUsersRoute
+  '/customers': typeof RootLayoutCustomersIndexRoute
+  '/inventory': typeof RootLayoutInventoryIndexRoute
+  '/orders': typeof RootLayoutOrdersIndexRoute
+  '/products': typeof RootLayoutProductsIndexRoute
+  '/settings': typeof RootLayoutSettingsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '': typeof AuthLayoutRouteWithChildren
   '/sign-in': typeof AuthLayoutSignInRoute
+  '/categories': typeof RootLayoutCategoriesRoute
+  '/collections': typeof RootLayoutCollectionsRoute
   '/profile': typeof RootLayoutProfileRoute
   '/': typeof RootLayoutIndexRoute
+  '/customers/$id': typeof RootLayoutCustomersIdRoute
+  '/inventory/$id': typeof RootLayoutInventoryIdRoute
+  '/orders/$id': typeof RootLayoutOrdersIdRoute
+  '/products/$id': typeof RootLayoutProductsIdRoute
+  '/products/create': typeof RootLayoutProductsCreateRoute
+  '/settings/profile': typeof RootLayoutSettingsProfileRoute
+  '/settings/store': typeof RootLayoutSettingsStoreRoute
+  '/settings/users': typeof RootLayoutSettingsUsersRoute
+  '/customers': typeof RootLayoutCustomersIndexRoute
+  '/inventory': typeof RootLayoutInventoryIndexRoute
+  '/orders': typeof RootLayoutOrdersIndexRoute
+  '/products': typeof RootLayoutProductsIndexRoute
+  '/settings': typeof RootLayoutSettingsIndexRoute
 }
 
 export interface FileRoutesById {
@@ -136,22 +406,90 @@ export interface FileRoutesById {
   '/_auth-layout': typeof AuthLayoutRouteWithChildren
   '/_root-layout': typeof RootLayoutRouteWithChildren
   '/_auth-layout/sign-in': typeof AuthLayoutSignInRoute
+  '/_root-layout/categories': typeof RootLayoutCategoriesRoute
+  '/_root-layout/collections': typeof RootLayoutCollectionsRoute
   '/_root-layout/profile': typeof RootLayoutProfileRoute
   '/_root-layout/': typeof RootLayoutIndexRoute
+  '/_root-layout/customers/$id': typeof RootLayoutCustomersIdRoute
+  '/_root-layout/inventory/$id': typeof RootLayoutInventoryIdRoute
+  '/_root-layout/orders/$id': typeof RootLayoutOrdersIdRoute
+  '/_root-layout/products/$id': typeof RootLayoutProductsIdRoute
+  '/_root-layout/products/create': typeof RootLayoutProductsCreateRoute
+  '/_root-layout/settings/profile': typeof RootLayoutSettingsProfileRoute
+  '/_root-layout/settings/store': typeof RootLayoutSettingsStoreRoute
+  '/_root-layout/settings/users': typeof RootLayoutSettingsUsersRoute
+  '/_root-layout/customers/': typeof RootLayoutCustomersIndexRoute
+  '/_root-layout/inventory/': typeof RootLayoutInventoryIndexRoute
+  '/_root-layout/orders/': typeof RootLayoutOrdersIndexRoute
+  '/_root-layout/products/': typeof RootLayoutProductsIndexRoute
+  '/_root-layout/settings/': typeof RootLayoutSettingsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/sign-in' | '/profile' | '/'
+  fullPaths:
+    | ''
+    | '/sign-in'
+    | '/categories'
+    | '/collections'
+    | '/profile'
+    | '/'
+    | '/customers/$id'
+    | '/inventory/$id'
+    | '/orders/$id'
+    | '/products/$id'
+    | '/products/create'
+    | '/settings/profile'
+    | '/settings/store'
+    | '/settings/users'
+    | '/customers'
+    | '/inventory'
+    | '/orders'
+    | '/products'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '' | '/sign-in' | '/profile' | '/'
+  to:
+    | ''
+    | '/sign-in'
+    | '/categories'
+    | '/collections'
+    | '/profile'
+    | '/'
+    | '/customers/$id'
+    | '/inventory/$id'
+    | '/orders/$id'
+    | '/products/$id'
+    | '/products/create'
+    | '/settings/profile'
+    | '/settings/store'
+    | '/settings/users'
+    | '/customers'
+    | '/inventory'
+    | '/orders'
+    | '/products'
+    | '/settings'
   id:
     | '__root__'
     | '/_auth-layout'
     | '/_root-layout'
     | '/_auth-layout/sign-in'
+    | '/_root-layout/categories'
+    | '/_root-layout/collections'
     | '/_root-layout/profile'
     | '/_root-layout/'
+    | '/_root-layout/customers/$id'
+    | '/_root-layout/inventory/$id'
+    | '/_root-layout/orders/$id'
+    | '/_root-layout/products/$id'
+    | '/_root-layout/products/create'
+    | '/_root-layout/settings/profile'
+    | '/_root-layout/settings/store'
+    | '/_root-layout/settings/users'
+    | '/_root-layout/customers/'
+    | '/_root-layout/inventory/'
+    | '/_root-layout/orders/'
+    | '/_root-layout/products/'
+    | '/_root-layout/settings/'
   fileRoutesById: FileRoutesById
 }
 
@@ -190,13 +528,36 @@ export const routeTree = rootRoute
     "/_root-layout": {
       "filePath": "_root-layout.tsx",
       "children": [
+        "/_root-layout/categories",
+        "/_root-layout/collections",
         "/_root-layout/profile",
-        "/_root-layout/"
+        "/_root-layout/",
+        "/_root-layout/customers/$id",
+        "/_root-layout/inventory/$id",
+        "/_root-layout/orders/$id",
+        "/_root-layout/products/$id",
+        "/_root-layout/products/create",
+        "/_root-layout/settings/profile",
+        "/_root-layout/settings/store",
+        "/_root-layout/settings/users",
+        "/_root-layout/customers/",
+        "/_root-layout/inventory/",
+        "/_root-layout/orders/",
+        "/_root-layout/products/",
+        "/_root-layout/settings/"
       ]
     },
     "/_auth-layout/sign-in": {
       "filePath": "_auth-layout/sign-in.tsx",
       "parent": "/_auth-layout"
+    },
+    "/_root-layout/categories": {
+      "filePath": "_root-layout/categories.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/collections": {
+      "filePath": "_root-layout/collections.tsx",
+      "parent": "/_root-layout"
     },
     "/_root-layout/profile": {
       "filePath": "_root-layout/profile.tsx",
@@ -204,6 +565,58 @@ export const routeTree = rootRoute
     },
     "/_root-layout/": {
       "filePath": "_root-layout/index.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/customers/$id": {
+      "filePath": "_root-layout/customers/$id.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/inventory/$id": {
+      "filePath": "_root-layout/inventory/$id.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/orders/$id": {
+      "filePath": "_root-layout/orders/$id.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/products/$id": {
+      "filePath": "_root-layout/products/$id.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/products/create": {
+      "filePath": "_root-layout/products/create.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/settings/profile": {
+      "filePath": "_root-layout/settings/profile.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/settings/store": {
+      "filePath": "_root-layout/settings/store.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/settings/users": {
+      "filePath": "_root-layout/settings/users.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/customers/": {
+      "filePath": "_root-layout/customers/index.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/inventory/": {
+      "filePath": "_root-layout/inventory/index.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/orders/": {
+      "filePath": "_root-layout/orders/index.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/products/": {
+      "filePath": "_root-layout/products/index.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/settings/": {
+      "filePath": "_root-layout/settings/index.tsx",
       "parent": "/_root-layout"
     }
   }
