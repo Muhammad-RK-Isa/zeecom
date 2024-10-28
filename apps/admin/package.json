@@ -11,6 +11,7 @@
     "start": "vite"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
     "@tanstack/router-plugin": "^1.76.4",
     "@types/bun": "^1.1.12",
     "@types/react": "^18.3.3",
@@ -29,6 +30,13 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@lexical/code": "^0.19.0",
+    "@lexical/html": "^0.19.0",
+    "@lexical/link": "^0.19.0",
+    "@lexical/list": "^0.19.0",
+    "@lexical/markdown": "^0.19.0",
+    "@lexical/react": "^0.19.0",
+    "@lexical/table": "^0.19.0",
     "@radix-ui/react-accordion": "^1.2.1",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -71,6 +79,7 @@
     "date-fns": "^4.1.0",
     "framer-motion": "^11.11.10",
     "input-otp": "^1.2.4",
+    "lexical": "^0.19.0",
     "lucide-react": "^0.453.0",
     "mini-svg-data-uri": "^1.4.4",
     "next-themes": "^0.3.0",
