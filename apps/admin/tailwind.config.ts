@@ -18,6 +18,7 @@ export default {
   	}
 	},
 	plugins: [
+		...base.plugins,
 		generateBackgrounds,
 		addVariablesForColors,
 	]
