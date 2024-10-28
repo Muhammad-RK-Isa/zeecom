@@ -56,7 +56,7 @@ const Editor: React.FC<EditorProps> = ({
     <LexicalComposer initialConfig={config}>
       <div
         className={cn(
-          "mx-auto relative flex flex-col border shadow rounded-lg prose dark:prose-invert bg-card transition divide-y",
+          "mx-auto relative flex flex-col border shadow rounded-lg bg-card transition divide-y ring-offset-background",
           isFocused ? "border-ring outline-none ring-2 ring-ring/30 ring-offset-2" : null,
           className,
         )}
@@ -68,7 +68,7 @@ const Editor: React.FC<EditorProps> = ({
               <ContentEditable
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setIsFocused(false)}
-                className="focus:outline-none w-full px-4 min-h-[500px] overflow-auto relative"
+                className="focus:outline-none w-full bg-background p-4 min-h-[500px] overflow-auto relative prose dark:prose-invert rounded-md"
               />
             }
             ErrorBoundary={LexicalErrorBoundary}
