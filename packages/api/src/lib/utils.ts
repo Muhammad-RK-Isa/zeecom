@@ -1,3 +1,5 @@
+import { PostgresError } from "postgres";
+
 export function getRandomSentence() {
   const funnySentences = [
     "Oops! You thought you had admin powers? Think again! 😜",
@@ -19,4 +21,14 @@ export function getRandomSentence() {
   ];
   const randomIndex = Math.floor(Math.random() * funnySentences.length);
   return funnySentences[randomIndex];
+}
+
+export function isPostgresError(error: unknown): error is PostgresError {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    "severity" in error &&
+    "detail" in error
+  )
 }
