@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss'
 import svgToDataUri from "mini-svg-data-uri"
-import "tailwindcss/colors"; 
+import "tailwindcss/colors";
 
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette"
 
@@ -10,12 +10,19 @@ export default {
 	darkMode: ["class"],
 	content: [...base.content],
 	presets: [base],
-  theme: {
-  	extend: {
-  		fontFamily: {
-  			poppins: ["Poppins", "sans-serif"]
-  		},
-  	}
+	theme: {
+		extend: {
+			typography: () => ({
+				DEFAULT: {
+					css: {
+						maxWidth: "100ch",
+					},
+				},
+			}),
+			fontFamily: {
+				poppins: ["Poppins", "sans-serif"]
+			},
+		}
 	},
 	plugins: [
 		...base.plugins,
@@ -24,7 +31,7 @@ export default {
 	]
 } satisfies Config
 
-function generateBackgrounds ({ matchUtilities, theme }: any) {
+function generateBackgrounds({ matchUtilities, theme }: any) {
 	matchUtilities(
 		{
 			"bg-grid": (value: any) => ({
