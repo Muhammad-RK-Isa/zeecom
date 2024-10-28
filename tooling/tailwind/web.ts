@@ -9,6 +9,13 @@ export default {
   presets: [base],
   theme: {
     extend: {
+      typography: () => ({
+        DEFAULT: {
+          css: {
+            maxWidth: "100ch",
+          },
+        },
+      }),
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
