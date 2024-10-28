@@ -6,7 +6,6 @@ import { CodeHighlightNode, CodeNode } from "@lexical/code";
 import { AutoLinkNode, LinkNode } from "@lexical/link";
 
 export const lexicalJsonToHtml = (jsonString: string): string => {
-  // Create a temporary editor instance
   const editor = createEditor({
     namespace: 'html-converter',
     nodes: [
@@ -22,12 +21,7 @@ export const lexicalJsonToHtml = (jsonString: string): string => {
   });
 
   try {
-    // Parse the JSON string into a state object
-    const parsedState = JSON.parse(jsonString);
-
-    // Set the editor state
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    editor.setEditorState(editor.parseEditorState(parsedState));
+    editor.setEditorState(editor.parseEditorState(jsonString));
 
     let htmlOutput = '';
     editor.update(() => {
