@@ -30,7 +30,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
 } from "~/components/ui/sidebar"
 import { useTheme } from "~/components/theme-provider"
 import { api, trpcQueryUtils } from "~/router"
@@ -41,7 +40,6 @@ export function NavUser() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  const { isMobile } = useSidebar()
   const { theme, setTheme } = useTheme()
 
   const { data } = api.auth.getUser.useQuery()
@@ -80,8 +78,7 @@ export function NavUser() {
           </DropdownMenuTrigger>
           <DropdownMenuContent
             className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-            side={isMobile ? "bottom" : "right"}
-            align="end"
+            side="top"
             sideOffset={4}
           >
             <DropdownMenuLabel className="p-0 font-normal">
