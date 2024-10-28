@@ -1,7 +1,7 @@
-import { SidebarProvider } from '~/components/ui/sidebar'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 import RootHeader from '~/components/root-header'
 import { RootSidebar } from '~/components/root-sidebar'
+import { SidebarProvider } from '~/components/ui/sidebar'
 
 export const Route = createFileRoute('/_root-layout')({
   beforeLoad: async ({ context, location }) => {
@@ -21,7 +21,9 @@ function RootLayoutComponent() {
       <RootSidebar />
       <div className="w-full relative">
         <RootHeader />
-        <Outlet />
+        <div className='p-4'>
+          <Outlet />
+        </div>
       </div>
     </SidebarProvider>
   )
