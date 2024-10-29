@@ -16,12 +16,15 @@ import {
 } from "~/components/ui/dropdown-menu"
 import { Form } from "~/components/ui/form"
 import { api } from "~/router"
-import ProductDetailsForm from "./product-create-details"
+import { ProductCreateDetails } from "./product-create-details"
 import { insertProductSchema } from "@zeecom/validators/admin"
 import type { InsertProductInput } from "@zeecom/validators/admin"
 import { useNavigate } from "@tanstack/react-router"
 import { EllipsisVertical, Loader2 } from "lucide-react"
 import { ProductCreateStatus } from "./product-create-status"
+import ProductPricingForm from "./product-create-pricing"
+import { ProductCreateInventory } from "./product-create-inventory"
+import { ProductCreateShipping } from "./product-create-shipping"
 
 export function ProductCreate() {
   const navigate = useNavigate()
@@ -29,6 +32,24 @@ export function ProductCreate() {
 
   const form = useForm<InsertProductInput>({
     resolver: zodResolver(insertProductSchema),
+    defaultValues: {
+      weight: {
+        value: undefined,
+        unit: "kg",
+      },
+      height: {
+        value: undefined,
+        unit: "m",
+      },
+      length: {
+        value: undefined,
+        unit: "m",
+      },
+      width: {
+        value: undefined,
+        unit: "m",
+      },
+    }
   })
 
   const { mutate, isPending } =
@@ -65,7 +86,7 @@ export function ProductCreate() {
         className="-mt-4 lg:space-y-0 lg:px-6"
       >
         <div className="sticky top-[3.875rem] z-50 -mx-4 w-screen bg-background sm:mx-0 sm:w-full md:w-full">
-          <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 p-4 sm:justify-start sm:px-0 xl:max-w-6xl">
+          <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 p-4 sm:justify-start sm:px-0 xl:max-w-5xl">
             <h1 className="max-w-40 truncate text-lg font-semibold tracking-tight md:max-w-72 md:text-xl lg:max-w-[60%]">
               Add Product
             </h1>
@@ -156,12 +177,13 @@ export function ProductCreate() {
             </DropdownMenu>
           </div>
         </div>
-        <div className="mx-auto grid w-full max-w-5xl gap-4 lg:grid-cols-[2fr,1fr] lg:px-0 xl:max-w-6xl">
+        <div className="mx-auto grid w-full max-w-5xl gap-4 lg:grid-cols-[2fr,1fr] lg:px-0 xl:max-w-5xl">
           <div className="grid auto-rows-max gap-4">
-            <ProductDetailsForm />
-            {/* <ProductPricingForm />
-            <ProductInventoryForm />
-            <ProductShippingForm />
+            <ProductCreateDetails />
+            <ProductPricingForm />
+            <ProductCreateInventory />
+            <ProductCreateShipping />
+            {/* 
             <ProductVariantsForm />
             <ProductSEOForm /> */}
           </div>
