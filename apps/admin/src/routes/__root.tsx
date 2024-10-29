@@ -23,7 +23,7 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 function RootComponent() {
   const isFetching = useRouterState({ select: (s) => s.isLoading })
 
-  const isDesktop = useMediaQuery("(min-width: 1024px)")
+  const isDesktop = useMediaQuery("(min-width: 768px)")
 
   const { theme } = useTheme()
 
