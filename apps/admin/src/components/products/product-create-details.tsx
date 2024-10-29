@@ -16,8 +16,9 @@ import {
 } from "~/components/ui/form"
 import Editor from "~/components/editor"
 import { Sparkles } from "lucide-react"
+import { ScrollArea, ScrollBar } from "../ui/scroll-area"
 
-const ProductDetailsForm = () => {
+export function ProductCreateDetails() {
   const form = useFormContext<InsertProductInput>()
   const { title } = form.watch()
 
@@ -83,9 +84,12 @@ const ProductDetailsForm = () => {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Editor
-                    {...field}
-                  />
+                  <ScrollArea className="w-[calc(100vw-5rem)] sm:w-full">
+                    <Editor
+                      {...field}
+                    />
+                    <ScrollBar orientation="horizontal"/>
+                  </ScrollArea>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -127,5 +131,3 @@ const ProductDetailsForm = () => {
     </Card>
   )
 }
-
-export default ProductDetailsForm
