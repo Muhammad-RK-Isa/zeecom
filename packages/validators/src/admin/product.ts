@@ -16,17 +16,17 @@ export const sizeUnits = z.enum(pgSizeUnits.enumValues)
 const generalProductFields = {
   mrp: z.coerce
     .number({ coerce: true })
-    .nonnegative({ message: "MRP cannot be negative" })
+    .nonnegative({ message: "Value cannot be negative" })
     .optional()
     .nullable(),
   price: z.coerce
     .number({ message: "Price is required" })
-    .nonnegative({ message: "Price cannot be negative" }),
+    .nonnegative({ message: "Value cannot be negative" }),
   inventoryQuantity: z.coerce
     .number({
       message: "Quantity is required",
     })
-    .nonnegative({ message: "Quantity cannot be negative" }),
+    .nonnegative({ message: "Value cannot be negative" }),
   manageInventory: z.boolean().optional().default(false),
   allowBackorder: z.boolean().optional().default(false),
   material: z.string().optional().nullable(),
@@ -34,14 +34,14 @@ const generalProductFields = {
   weight: z.object({
     value: z.coerce
       .number({ message: "Please enter the weight" })
-      .nonnegative({ message: "Weight cannot be negative" }),
+      .nonnegative({ message: "Value cannot be negative" }),
     unit: weightUnits.default("kg"),
   }),
   length: z
     .object({
       value: z.coerce
         .number()
-        .nonnegative({ message: "Length cannot be negative" })
+        .nonnegative({ message: "Value cannot be negative" })
         .optional()
         .nullable(),
       unit: sizeUnits.default("m"),
@@ -52,7 +52,7 @@ const generalProductFields = {
     .object({
       value: z.coerce
         .number()
-        .nonnegative({ message: "Height cannot be negative" })
+        .nonnegative({ message: "Value cannot be negative" })
         .optional()
         .nullable(),
       unit: sizeUnits.default("m"),
@@ -63,7 +63,7 @@ const generalProductFields = {
     .object({
       value: z.coerce
         .number()
-        .nonnegative({ message: "Width cannot be negative" })
+        .nonnegative({ message: "Value cannot be negative" })
         .optional()
         .nullable(),
       unit: sizeUnits.default("m"),
